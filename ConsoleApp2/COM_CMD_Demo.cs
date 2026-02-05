@@ -6,6 +6,10 @@ namespace ConsoleApp2
 {
     internal class COM_CMD_Demo
     {
+        /// <summary>
+        /// entry point for command line console application
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             // list available serial ports
@@ -20,6 +24,8 @@ namespace ConsoleApp2
             // open the serial port
             port.Open();
             // this will be the process that monitors the GPU
+            // TimerConsole.exe just writes a message every 2 seconds
+            // make sure the TimerConsole.exe is in the same folder as this executable
             Process process = new Process();
             process.StartInfo.FileName = "TimerConsole.exe";
             process.StartInfo.UseShellExecute = false;
@@ -32,7 +38,7 @@ namespace ConsoleApp2
                 // this is the string that will be read from COM or command
                 // '?' allows it to be null (empty)
                 String? read = "";
-                // wait for something on the port
+                // wait for something on the COM port
                 if (port.BytesToRead > 0)
                 {
                     // read up to the end of the line
@@ -43,7 +49,7 @@ namespace ConsoleApp2
                     // output the line read from the COM port
                     Console.WriteLine(read);
                 }
-                // read a line from the process
+                // read a line from the process, write to console if not null
                 read = process.StandardOutput.ReadLine();
                 if (read != null)
                 {
