@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COM_CMD_Demo", "ConsoleApp2\COM_CMD_Demo.csproj", "{C3463C27-14C8-44B8-99C0-DCF056612F85}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A21A4349-0100-46F6-A1AE-E4E223C05E2A} = {A21A4349-0100-46F6-A1AE-E4E223C05E2A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerConsole", "TimerConsole\TimerConsole.csproj", "{A21A4349-0100-46F6-A1AE-E4E223C05E2A}"
 EndProject

@@ -30,7 +30,7 @@ namespace ConsoleApp2
             ProcessStartInfo startInfo = new ProcessStartInfo()
             {
                 FileName = "TimerConsole.exe",
-                Arguments = "5000",
+                Arguments = "5000 \"TimerConsole event \"",
                 RedirectStandardOutput = true,
                 UseShellExecute = false
             };

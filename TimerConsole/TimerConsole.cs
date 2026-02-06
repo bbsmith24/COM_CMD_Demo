@@ -4,6 +4,7 @@ class TimerConsole
 {
     // timer variable, fires every 2 seconds (2000 milliseconds)
     private static System.Timers.Timer aTimer = new System.Timers.Timer(2000.0);
+    static string outputStr = "";
 
     static void Main(string[] args)
     {
@@ -23,6 +24,17 @@ class TimerConsole
         {
             Console.WriteLine("Interval set to default value of 2000ms\n");
             SetTimer(2000);
+        }
+        try
+        {
+            Console.WriteLine("Output string set to " + args[1]);
+            outputStr = args[1];
+        }
+        // either no argument, or not an integer - set to default of 2000ms
+        catch
+        {
+            Console.WriteLine("Output string set to default value of 'The Elapsed event was raised at '\n");
+            outputStr = "The Elapsed event was raised at ";
         }
         // start timer
 
@@ -49,6 +61,6 @@ class TimerConsole
     private static void OnTimedEvent(Object source, ElapsedEventArgs e)
     {
         // output message to console when the event is raised
-        Console.WriteLine($"The Elapsed event was raised at {e.SignalTime:HH:mm:ss.fff}");
+        Console.WriteLine(outputStr + $" {e.SignalTime:HH:mm:ss.fff}");
     }
 }
