@@ -7,8 +7,24 @@ class TimerConsole
 
     static void Main(string[] args)
     {
+        for(int idx = 0; idx < args.Length; idx++)
+        {
+            Console.WriteLine("arg[" + idx.ToString() + "] = " + args[idx] + "\n");
+        }
+        // if an argument was passed in, try converting it to an integer
+        // if it is an integer, use that for the timer interval
+        try
+        {
+            Console.WriteLine("Interval set to " + args[0] + "ms\n");
+            SetTimer(Convert.ToDouble(args[0]));
+        }
+        // either no argument, or not an integer - set to default of 2000ms
+        catch
+        {
+            Console.WriteLine("Interval set to default value of 2000ms\n");
+            SetTimer(2000);
+        }
         // start timer
-        SetTimer();
 
         Console.WriteLine("\nPress the Enter key to exit the application...\n");
         Console.WriteLine($"The application started at {DateTime.Now:HH:mm:ss.fff}");
@@ -19,10 +35,10 @@ class TimerConsole
         Console.WriteLine("Terminating the application...");
     }
 
-    private static void SetTimer()
+    private static void SetTimer(double timerInterval)
     {
         // Create a timer with a two second interval.
-        aTimer = new System.Timers.Timer(2000);
+        aTimer = new System.Timers.Timer(timerInterval);
         // Hook up the Elapsed event for the timer.
         // adds the function (OnTimedEvent) to the handler for aTimer
         aTimer.Elapsed += OnTimedEvent;

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
 
@@ -24,13 +25,16 @@ namespace ConsoleApp2
             // open the serial port
             port.Open();
             // this will be the process that monitors the GPU
-            // TimerConsole.exe just writes a message every 2 seconds
+            // TimerConsole.exe just writes a message every 2 seconds or value passed in
             // make sure the TimerConsole.exe is in the same folder as this executable
-            Process process = new Process();
-            process.StartInfo.FileName = "TimerConsole.exe";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.Start();
+            ProcessStartInfo startInfo = new ProcessStartInfo()
+            {
+                FileName = "TimerConsole.exe",
+                Arguments = "5000",
+                RedirectStandardOutput = true,
+                UseShellExecute = false
+            };
+            Process? process = Process.Start(startInfo);
 
             // run until the console closes
             while (true)
